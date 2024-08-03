@@ -12,7 +12,6 @@ services:
       - HDFS_CONF_dfs_namenode_servicerpc-address=hdfs://namenode:9001
       - HDFS_CONF_dfs_namenode_http-address=hdfs://namenode:50070
       - HDFS_CONF_dfs_namenode_https-address=hdfs://namenode:50470
-      - HDFS_CONF_dfs_namenode_servicerpc-address=hdfs
     ports:
       - "9870:9870" # Expose HDFS UI
     volumes:
