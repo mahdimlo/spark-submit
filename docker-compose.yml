@@ -85,7 +85,7 @@ services:
       - spark-master
       - spark-worker1
       - spark-worker2
-    entrypoint: ["/spark/bin/spark-submit", "/app/word_count.py", "hdfs://namenode1:9000/user/history/history.txt", "hdfs://namenode1:9000/user/history/output"]
+    entrypoint: ["/spark/bin/spark-submit", "/app/word_count.py", "hdfs://namenode:9000/user/history/history.txt", "hdfs://namenode:9000/user/history/output"]
 volumes:
   hadoop_namenode:
   hadoop_datanode1:
