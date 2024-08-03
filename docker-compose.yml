@@ -1,9 +1,7 @@
 version: '3.8'
 services:
-  namenode1:
-    build:
-      context: ./namenode
-    image: custom-hadoop-namenode:latest
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
     container_name: namenode
     environment:
       - CLUSTER_NAME=test
@@ -38,7 +36,7 @@ services:
       - hadoop_datanode2:/hadoop/dfs/data
 
   spark-master:
-    image: bde2020/spark-master:2.4.5-hadoop2.7
+    image: bde2020/spark-master:3.3.0-hadoop3.3
     container_name: spark-master
     environment:
       - SPARK_MODE=master
@@ -50,7 +48,7 @@ services:
       - "7077:7077"
 
   spark-worker1:
-    image: bde2020/spark-worker:2.4.5-hadoop2.7
+    image: bde2020/spark-worker:3.3.0-hadoop3.3
     container_name: spark-worker1
     environment:
       - SPARK_MODE=worker
@@ -65,7 +63,7 @@ services:
       - spark-master
 
   spark-worker2:
-    image: bde2020/spark-worker:2.4.5-hadoop2.7
+    image: bde2020/spark-worker:3.3.0-hadoop3.3
     container_name: spark-worker2
     environment:
       - SPARK_MODE=worker
@@ -83,6 +81,7 @@ services:
       context: ./spark-submit
     image: custom-pyspark-wordcount:latest
     depends_on:
+      - namenode
       - spark-master
       - spark-worker1
       - spark-worker2
